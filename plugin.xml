@@ -50,7 +50,7 @@
 			</activity>
 			<service 
 				android:name="com.gae.scaffolder.plugin.MyFirebaseMessagingService"
-				android:stopWithTask="false"">
+				android:stopWithTask="false">
 				<intent-filter>
 					<action android:name="com.google.firebase.MESSAGING_EVENT"/>
 				</intent-filter>
