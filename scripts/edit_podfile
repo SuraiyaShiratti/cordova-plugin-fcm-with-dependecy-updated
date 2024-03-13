@@ -1,0 +1,42 @@
+module.exports = function(context) {
+	var fs = require('fs');
+	var ROOT_DIR = context.opts.projectRoot;
+	
+    // Define the Podfile path
+    const PODFILE_PATH = ROOT_DIR + '/platforms/ios/Podfile';
+
+    // Define the content to be added to the Podfile
+const CONTENT = `
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+    end
+  end
+end
+`;
+
+
+    // Read the existing Podfile content
+    fs.readFile(PODFILE_PATH, 'utf8', (err, data) => {
+    if (err) {
+        console.error(`Error reading Podfile: ${err}`);
+        return;
+    }
+
+    // Check if the post_install section already exists
+    if (!data.includes('post_install')) {
+        // Add the content to the Podfile
+        fs.appendFile(PODFILE_PATH, CONTENT, (err) => {
+        if (err) {
+            console.error(`Error appending content to Podfile: ${err}`);
+            return;
+        }
+        console.log(`Added post_install section to Podfile at ${PODFILE_PATH}`);
+        });
+    } else {
+        console.log(`post_install section already exists in Podfile at ${PODFILE_PATH}`);
+    }
+    });
+
+};
