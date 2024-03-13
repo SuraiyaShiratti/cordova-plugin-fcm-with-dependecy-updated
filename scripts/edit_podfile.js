@@ -4,10 +4,9 @@
 var fs = require('fs');
 var helpers = require('./helpers');
 var configurations = require(`./configuration`);
-var ROOT_DIR = context.opts.projectRoot;
 	
     // Define the Podfile path
-const PODFILE_PATH = ROOT_DIR + '/platforms/ios/Podfile';
+const PODFILE_PATH = 'platforms/ios/Podfile';
 var PLATFORM = configurations.PLATFORM;
 
 function editPodfile() {
