@@ -13,9 +13,9 @@ const NEW_PLATFORM_LINE = `platform :ios, '17.0'\n`;
 function editPodfile() {
     const CONTENT = `
 post_install do |installer|
+ system('sed -i "" "/IPHONEOS_DEPLOYMENT_TARGET = 11.0/s//IPHONEOS_DEPLOYMENT_TARGET = 17.0/" "CordovaLib/CordovaLib.xcodeproj/project.pbxproj"')
  installer.pods_project.targets.each do |target|
   target.build_configurations.each do |config|
-   system('sed -i \'\' \'/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 17.0/\’ \'CordovaLib/CordovaLib.xcodeproj/project.pbxproj\'')
    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
   end
  end
