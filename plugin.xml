@@ -124,6 +124,7 @@
 			</config>
 			<pods>
 				<pod name="Firebase/Messaging" spec="$IOS_FIREBASE_MESSAGING_VERSION"/>
+				<pod name="GoogleUtilities" spec="~> 7.7.0"/>
 			</pods>
 		</podspec>
 	</platform>
