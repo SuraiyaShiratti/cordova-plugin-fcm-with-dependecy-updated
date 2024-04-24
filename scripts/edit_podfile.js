@@ -60,6 +60,6 @@ end
 }
 
 
-if (PLATFORM.IOS) {
+if (configurations.PLATFORM.IOS) {
     editPodfile();
 }
